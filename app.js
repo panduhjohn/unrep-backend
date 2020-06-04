@@ -1,13 +1,28 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const mongoose = require('mongoose')
+const chalk = require('chalk')
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+const indexRouter = require('./routes/index');
+const usersRouter = require('./routes/users');
 
-var app = express();
+require('dotenv').config()
+
+mongoose
+    .connect(process.env.MONGO_DB, {
+        useNewUrlParser: true,
+        useCreateIndex: true,
+        useUnifiedTopology: true,
+        useFindAndModify: false,
+    })
+    .then(() => console.log(chalk.red('Mongo DB Connected')))
+    .catch((error) => console.log('Error in MongoDB', error));
+
+
+const app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
