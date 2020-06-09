@@ -8,7 +8,7 @@ const chalk = require("chalk");
 
 const indexRouter = require("./routes/home");
 const usersRouter = require("./routes/users/users");
-
+const restaurantRouter = require("./routes/restaurant/restaurant");
 require("dotenv").config();
 
 mongoose
@@ -35,6 +35,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
+app.use("/restaurants", restaurantRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

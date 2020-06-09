@@ -25,6 +25,11 @@ const UserSchema = new mongoose.Schema({
     default: now.format("dddd, MMMM Do YYYY, h:mm:ss a"),
   },
   expenses: [{ type: mongoose.Schema.ObjectId, ref: "Expense" }],
+  myDrinks: [
+    {
+      drinks: String,
+    },
+  ],
 });
 
 module.exports = mongoose.model("User", UserSchema);
