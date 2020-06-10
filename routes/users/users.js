@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const userController = require('./controllers/userController');
-const jwtHelper = require('../users/authHelpers/jwtHelper');
+const jwtHelper = require('./authHelpers/jwtHelper');
 
 /* GET users listing. */
 router.get('/', function (req, res, next) {
