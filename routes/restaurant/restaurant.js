@@ -18,7 +18,7 @@ router.get("/", function (req, res, next) {
         console.log(place.restaurant.name);
         list.push(place.restaurant);
       });
-      res.send(list.slice(0, 1));
+      res.send(list.slice(0, 20));
       // console.log(result[0].restaurant.name);
 
       // res.send(result[0]);
