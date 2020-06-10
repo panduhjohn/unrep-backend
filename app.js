@@ -5,6 +5,7 @@ const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const mongoose = require("mongoose");
 const chalk = require("chalk");
+var cors = require("cors");
 
 const indexRouter = require("./routes/home");
 const usersRouter = require("./routes/users/users");
@@ -26,6 +27,13 @@ const app = express();
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
+
+app.use(
+  cors({
+    origin: ["http://localhost:3000"],
+    credentials: true,
+  })
+);
 
 app.use(logger("dev"));
 app.use(express.json());
