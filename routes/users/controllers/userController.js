@@ -96,4 +96,23 @@ module.exports = {
       res.status(500).json({ message: dbErrorHelper(e) });
     }
   },
+  updateProfile: (params, id) => {
+    const { name, email, address } = params;
+    return new Promise((resolve, reject) => {
+      User.findById(id)
+        .then((info) => {
+          if (name) info.profile.name = name;
+          if (email) info.email = email;
+          if (address) info.address = address;
+
+          return info;
+        })
+        .then((info) => {
+          info.save().then((info) => {
+            resolve(info);
+          });
+        })
+        .catch((err) => reject(err));
+    }).catch((err) => reject(err));
+  },
 };
